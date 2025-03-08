@@ -8,7 +8,10 @@ const Stack = createStackNavigator();
 
 export default function Layout({ user }) {
   // Assume user.userType is available (either 'patient' or 'doctor')
+
   const userType = user?.userType || "doctor";
+
+
 
   return (
     <Stack.Navigator

@@ -6,10 +6,7 @@ export default function UserDashboard() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Image
-          source={{ uri: "https://example.com/profile.jpg" }}
-          style={styles.profileImage}
-        />
+        <Image source={require("../assets/logo3.jpg")} style={styles.logo} />
         <Text style={styles.welcomeText}>Welcome back, Annette</Text>
         <Ionicons name="notifications-outline" size={24} color="#333" />
       </View>
@@ -71,6 +68,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 20,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   profileImage: {
     width: 50,

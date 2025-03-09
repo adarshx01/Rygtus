@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {
@@ -30,7 +31,6 @@ export default function AuthScreen({ navigation }) {
       setLoading(true);
       setError("");
 
-      // Sign in with Firebase Auth
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -38,7 +38,6 @@ export default function AuthScreen({ navigation }) {
       );
       const user = userCredential.user;
 
-      // Query the userTypes collection to get the user type
       const userTypeQuery = query(
         collection(db, "userTypes"),
         where("uid", "==", user.uid)
@@ -47,24 +46,21 @@ export default function AuthScreen({ navigation }) {
       const querySnapshot = await getDocs(userTypeQuery);
 
       if (querySnapshot.empty) {
-        // If no user type found, handle the error
         setError("User type not found. Please contact support.");
         setLoading(false);
         return;
       }
 
-      // Get the user type
       const userTypeDoc = querySnapshot.docs[0];
       const userData = userTypeDoc.data();
       const userType = userData.userType;
 
-      // Navigate to the appropriate screen based on user type
       if (userType === "patient") {
         navigation.navigate("MainApp");
       } else if (userType === "doctor") {
         navigation.navigate("Dashboard");
       } else {
-        navigation.navigate("MainApp"); // Fallback
+        navigation.navigate("MainApp");
       }
 
       setLoading(false);
@@ -77,6 +73,10 @@ export default function AuthScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
+        <Image
+          source={require("../assets/logo3.jpg")}
+          style={styles.logo}
+        />
         <Text style={styles.title}>Login</Text>
         <TextInput
           style={styles.input}
@@ -137,6 +137,13 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 3 },
+    alignItems: "center",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 50,
   },
   title: {
     fontSize: 24,
@@ -153,6 +160,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: "#f8f9fa",
     marginBottom: 15,
+    width: "100%",
   },
   error: {
     color: "red",
@@ -165,6 +173,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     marginTop: 10,
+    width: "100%",
   },
   buttonDisabled: {
     backgroundColor: "#6c757d",

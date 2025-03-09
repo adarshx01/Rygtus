@@ -39,7 +39,7 @@ export default function MedBot() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ImageBackground
-        source={{ uri: "https://example.com/health-background.jpg" }}
+        source={require("../assets/logo1.png")}
         style={styles.background}
       >
         <Text style={styles.header}>MedBot</Text>

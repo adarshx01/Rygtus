@@ -1,43 +1,72 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Switch } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Switch,
+  ImageBackground,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function ProfilePage() {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <ScrollView style={[styles.container, darkMode && styles.darkContainer]}>
-      <View style={styles.header}>
-        <Ionicons name="person-circle-outline" size={80} color="#007bff" />
-        <Text style={styles.userName}>Annette</Text>
-        <Text style={styles.userEmail}>annette@example.com</Text>
-      </View>
+    <ImageBackground
+      source={require("../assets/logo.png")}
+      style={styles.background}
+    >
+      <ScrollView style={[styles.container, darkMode && styles.darkContainer]}>
+        <View style={styles.header}>
+          <Ionicons name="person-circle-outline" size={80} color="#007bff" />
+          <Text style={[styles.userName, darkMode && styles.darkText]}>
+            Annette
+          </Text>
+          <Text style={[styles.userEmail, darkMode && styles.darkText]}>
+            annette@example.com
+          </Text>
+        </View>
 
-      <View style={[styles.infoSection, darkMode && styles.darkInfoSection]}>
-        <View style={styles.infoItem}>
-          <Text style={styles.infoLabel}>App Version</Text>
-          <Text style={styles.infoValue}>1.0.0</Text>
+        <View style={[styles.infoSection, darkMode && styles.darkInfoSection]}>
+          <View style={styles.infoItem}>
+            <Text style={[styles.infoLabel, darkMode && styles.darkText]}>
+              App Version
+            </Text>
+            <Text style={[styles.infoValue, darkMode && styles.darkText]}>
+              1.0.0
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={[styles.infoLabel, darkMode && styles.darkText]}>
+              Dark Mode
+            </Text>
+            <Switch value={darkMode} onValueChange={setDarkMode} />
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={[styles.infoLabel, darkMode && styles.darkText]}>
+              Language
+            </Text>
+            <Text style={[styles.infoValue, darkMode && styles.darkText]}>
+              English
+            </Text>
+          </View>
         </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.infoLabel}>Dark Mode</Text>
-          <Switch value={darkMode} onValueChange={setDarkMode} />
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.infoLabel}>Language</Text>
-          <Text style={styles.infoValue}>English</Text>
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "transparent",
     padding: 20,
   },
-  darkContainer: { backgroundColor: "#121212" },
+  darkContainer: { backgroundColor: "rgba(18, 18, 18, 0.8)" },
   header: {
     alignItems: "center",
     marginBottom: 30,
@@ -52,8 +81,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#666",
   },
+  darkText: { color: "#fff" },
   infoSection: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: 10,
     padding: 20,
     shadowColor: "#000",
@@ -62,7 +92,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   darkInfoSection: {
-    backgroundColor: "#1e1e1e",
+    backgroundColor: "rgba(30, 30, 30, 0.8)",
   },
   infoItem: {
     flexDirection: "row",

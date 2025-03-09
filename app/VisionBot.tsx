@@ -388,22 +388,23 @@ const styles = StyleSheet.create({
   // Home Screen Styles
   homeContainer: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#00000',
   },
   header: {
     padding: 20,
     alignItems: 'center',
     marginTop: 20,
+    
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
+    color: 'blue',
     textAlign: 'center',
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#ccc',
+    color: 'black',
     textAlign: 'center',
     marginTop: 10,
   },
@@ -416,8 +417,10 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 125,
+    borderColor: 'blue',
   },
   instructionsContainer: {
+    borderStyle:"dashed",
     padding: 20,
     marginHorizontal: 10,
     backgroundColor: 'rgba(255,255,255,0.1)',
@@ -426,12 +429,12 @@ const styles = StyleSheet.create({
   instructionsTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color: 'grey',
     marginBottom: 10,
   },
   instructionsText: {
     fontSize: 14,
-    color: '#ddd',
+    color: 'grey',
     lineHeight: 22,
   },
   optionsContainer: {

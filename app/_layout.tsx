@@ -11,11 +11,9 @@ export default function Layout({ user }) {
 
   const userType = user?.userType || "doctor";
 
-
-
   return (
     <Stack.Navigator
-      screenOptions={{ headerShown: false, animation: "slide_from_right" }}
+      screenOptions={{ headerShown: false, animation: "slide_from_right"  }}
     >
       <Stack.Screen name="AuthScreen" component={AuthScreen} />
       <Stack.Screen name="SignupScreen" component={SignupScreen} />

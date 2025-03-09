@@ -50,9 +50,8 @@ Doctors can validate AI-generated herb identifications, allowing the model to le
 By combining AI, Ayurvedic principles, and holistic health methodologies, Ayucare makes personalized, preventive, and traditional healthcare more accessible, while empowering doctors with AI-assisted insights for better treatment decisions.**
 
 ### Demo
-[![Project Demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
-_Replace VIDEO_ID with your YouTube video ID or provide an alternative demo link_
-
+Youtube video
+https://youtube.com/shorts/aOIqdPfZFpE
 ### Live Project
 Built apk running on local mobile device
 

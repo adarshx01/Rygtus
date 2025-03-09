@@ -19,7 +19,7 @@ export default function UserDashboard() {
         <View style={styles.header}>
           <Image source={require("../assets/logo3.jpg")} style={styles.logo} />
           <Text style={styles.welcomeText}>Welcome back, Annette</Text>
-          <Ionicons name="notifications-outline" size={24} color="#333" />
+          <Ionicons name="notifications-outline" size={24} color="#fff" />
         </View>
 
         <View style={styles.userInfoContainer}>
@@ -29,7 +29,7 @@ export default function UserDashboard() {
             <Text style={styles.userInfoText}>Dosha: Vata</Text>
           </View>
           <View style={styles.devicesCard}>
-            <Ionicons name="fitness-outline" size={32} color="#007bff" />
+            <Ionicons name="fitness-outline" size={32} color="#fff" />
             <Text style={styles.devicesTitle}>Connected Devices</Text>
             <Text style={styles.devicesText}>Google Fit, Apple Health</Text>
           </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent overlay
     padding: 20,
   },
   header: {
@@ -89,15 +89,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
   },
-  profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: "#007bff",
-  },
   welcomeText: {
-    color: "#333",
+    color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -107,7 +100,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   userInfoCard: {
-    backgroundColor: "rgba(173, 193, 196, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: 15,
     padding: 20,
     flex: 1,
@@ -124,7 +117,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   devicesCard: {
-    backgroundColor: "rgba(173, 193, 196, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: 15,
     padding: 20,
     flex: 1,
@@ -147,7 +140,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   reportsCard: {
-    backgroundColor: "rgba(207, 191, 165, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: 15,
     padding: 20,
     marginBottom: 20,
@@ -174,7 +167,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   ayushCard: {
-    backgroundColor: "rgba(188, 221, 191, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: 15,
     padding: 20,
     width: "48%",

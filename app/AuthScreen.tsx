@@ -1,55 +1,68 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
-import { auth } from './firebaseConfig';
+import React, { useState } from "react";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  Image,
+} from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { auth } from "./firebaseConfig";
 
 const db = getFirestore();
 
 export default function AuthScreen({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     try {
       setLoading(true);
-      setError('');
-      
-      // Sign in with Firebase Auth
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      
-      // Query the userTypes collection to get the user type
-      const userTypeQuery = query(
-        collection(db, 'userTypes'),
-        where('uid', '==', user.uid)
+      setError("");
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
       );
-      
+      const user = userCredential.user;
+
+      const userTypeQuery = query(
+        collection(db, "userTypes"),
+        where("uid", "==", user.uid)
+      );
+
       const querySnapshot = await getDocs(userTypeQuery);
-      
+
       if (querySnapshot.empty) {
-        // If no user type found, handle the error
-        setError('User type not found. Please contact support.');
+        setError("User type not found. Please contact support.");
         setLoading(false);
         return;
       }
-      
-      // Get the user type
+
       const userTypeDoc = querySnapshot.docs[0];
       const userData = userTypeDoc.data();
       const userType = userData.userType;
-      
-      // Navigate to the appropriate screen based on user type
-      if (userType === 'patient') {
-        navigation.navigate('MainApp');
-      } else if (userType === 'doctor') {
-        navigation.navigate('Dashboard');
+
+      if (userType === "patient") {
+        navigation.navigate("MainApp");
+      } else if (userType === "doctor") {
+        navigation.navigate("Dashboard");
       } else {
-        navigation.navigate('MainApp'); // Fallback
+        navigation.navigate("MainApp");
       }
-      
+
       setLoading(false);
     } catch (err) {
       setError(err.message);
@@ -60,6 +73,10 @@ export default function AuthScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
+        <Image
+          source={require("../assets/logo3.jpg")}
+          style={styles.logo}
+        />
         <Text style={styles.title}>Login</Text>
         <TextInput
           style={styles.input}
@@ -79,9 +96,9 @@ export default function AuthScreen({ navigation }) {
           placeholderTextColor="#aaa"
         />
         {error ? <Text style={styles.error}>{error}</Text> : null}
-        
-        <TouchableOpacity 
-          style={styles.button} 
+
+        <TouchableOpacity
+          style={[styles.button, loading && styles.buttonDisabled]}
           onPress={handleLogin}
           disabled={loading}
         >
@@ -91,10 +108,10 @@ export default function AuthScreen({ navigation }) {
             <Text style={styles.buttonText}>Login</Text>
           )}
         </TouchableOpacity>
-        
-        <TouchableOpacity 
-          style={styles.link} 
-          onPress={() => navigation.navigate('SignupScreen')}
+
+        <TouchableOpacity
+          style={styles.link}
+          onPress={() => navigation.navigate("SignupScreen")}
           disabled={loading}
         >
           <Text style={styles.linkText}>Go to Signup</Text>
@@ -107,59 +124,71 @@ export default function AuthScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#e9ecef",
   },
   card: {
-    width: '90%',
-    padding: 20,
-    backgroundColor: '#fff',
+    width: "85%",
+    padding: 25,
+    backgroundColor: "#fff",
     borderRadius: 10,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 3 },
+    alignItems: "center",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 50,
   },
   title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 16,
-    color: '#333',
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+    color: "#333",
   },
   input: {
-    height: 45,
-    borderColor: '#ddd',
+    height: 50,
+    borderColor: "#ddd",
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
-    marginBottom: 12,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    backgroundColor: "#f8f9fa",
+    marginBottom: 15,
+    width: "100%",
   },
   error: {
-    color: 'red',
-    textAlign: 'center',
+    color: "red",
+    textAlign: "center",
     marginBottom: 10,
   },
   button: {
-    backgroundColor: '#007bff',
-    paddingVertical: 12,
-    borderRadius: 5,
-    alignItems: 'center',
+    backgroundColor: "#007bff",
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: "center",
     marginTop: 10,
+    width: "100%",
+  },
+  buttonDisabled: {
+    backgroundColor: "#6c757d",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   link: {
-    marginTop: 10,
-    alignItems: 'center',
+    marginTop: 15,
+    alignItems: "center",
   },
   linkText: {
-    color: '#007bff',
+    color: "#007bff",
     fontSize: 14,
   },
 });

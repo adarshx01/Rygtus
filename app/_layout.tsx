@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AuthScreen from "./AuthScreen";
 import SignupScreen from "./SignupScreen";
 import Tabs from "./tabs/__layout";
+import TalkingBot from "./3DBot";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export default function Layout({ user }) {
     >
       <Stack.Screen name="AuthScreen" component={AuthScreen} />
       <Stack.Screen name="SignupScreen" component={SignupScreen} />
+      <Stack.Screen name="3Dbot" component={TalkingBot} />
       <Stack.Screen name="Dashboard">
         {() => <Tabs userType={userType} />}
       </Stack.Screen>

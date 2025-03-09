@@ -6,10 +6,24 @@ import {
   ScrollView,
   Image,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function UserDashboard() {
+  const navigation = useNavigation();
+
+  const setTokenAndNavigate = async () => {
+    try {
+      await AsyncStorage.setItem('token', '1');
+      navigation.navigate('3DBot');
+    } catch (error) {
+      console.error('Error setting token:', error);
+    }
+  };
+
   return (
     <ImageBackground
       source={require("../assets/logo.png")}
@@ -64,6 +78,13 @@ export default function UserDashboard() {
             <Text style={styles.ayushSubtitle}>Herbal Recommendations</Text>
           </View>
         </View>
+
+        <TouchableOpacity 
+          style={{ backgroundColor: 'blue', padding: 12, margin: 10, borderRadius: 8 }}
+          onPress={setTokenAndNavigate}
+        >
+          <Text style={{ color: '#fff', fontWeight: 'bold' }}>Go to 3DBot with Token=2</Text>
+        </TouchableOpacity>
       </ScrollView>
     </ImageBackground>
   );
@@ -71,17 +92,6 @@ export default function UserDashboard() {
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent overlay
-    padding: 20,
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
     marginBottom: 20,
   },
   logo: {

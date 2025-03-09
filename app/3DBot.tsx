@@ -16,6 +16,7 @@ export default function ChatScreen() {
   const [inputMessage, setInputMessage] = useState('');
   const scrollViewRef = useRef();
   const [hasPermission, setHasPermission] = useState(false);
+  const [paramToken, setParamToken] = useState('1');
 
   // Load messages from AsyncStorage on initial render
   useEffect(() => {
@@ -63,6 +64,21 @@ export default function ChatScreen() {
       scrollViewRef.current.scrollToEnd({ animated: true });
     }
   }, [messages]);
+
+  useEffect(() => {
+    const loadTokenFromStorage = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('token');
+        console.log('Stored token:', storedToken);
+        if (storedToken) {
+          setParamToken(storedToken);
+        }
+      } catch (error) {
+        console.error('Error reading token:', error);
+      }
+    };
+    loadTokenFromStorage();
+  }, []);
 
   const requestPermissions = async () => {
     try {
@@ -165,9 +181,9 @@ export default function ChatScreen() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, token: paramToken }),
       });
-  
+      console.log('paramToken:', paramToken);
       const data = await response.json();
       
       if (data.message) {

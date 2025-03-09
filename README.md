@@ -54,7 +54,7 @@ By combining AI, Ayurvedic principles, and holistic health methodologies, Ayucar
 _Replace VIDEO_ID with your YouTube video ID or provide an alternative demo link_
 
 ### Live Project
-[Project Name](https://your-project-url.com)
+Built apk running on local mobile device
 
 ## Technical Implementation
 
@@ -77,19 +77,41 @@ _Replace VIDEO_ID with your YouTube video ID or provide an alternative demo link
 ## Setup Instructions
 
 ### Prerequisites
-- Requirement 1
-- Requirement 2
-- Requirement 3
+1 React Native Environment – Node.js, Expo, or React Native CLI for cross-platform development.
+2. Backend & Database – Firebase for authentication and real-time data storage, along with PostgreSQL or MongoDB for structured data management.
+3. AI & Machine Learning – TensorFlow or PyTorch for training models, OpenCV for image processing, and cloud GPU services (Google Colab, AWS, or Azure) for deep learning.
+4. Computer Vision – Pre-trained segmentation models for tongue analysis and herb identification, fine-tuned with manually annotated datasets.
+5. Chatbot & NLP – Google Dialogflow or OpenAI GPT-based models for interactive chatbot responses tailored to AYUSH principles.
+6. APIs & Integrations – Speech-to-text services, image recognition APIs, and cloud storage for patient records.
 
 ### Installation 
-```bash
+# Clone the repository
+git clone https://github.com/your-repo/ayucare.git
+cd ayucare
 
-```
+# Install dependencies
+npm install  # or yarn install
+
+# Setup Firebase
+# Configure your Firebase credentials in a .env file
+
+# Start the development server
+npx expo start  # For Expo
+# OR
+npx react-native run-android  # For Android
+npx react-native run-ios  # For iOS
 
 ### Running the Project
-```bash
+# Start the development server
+npx expo start  # For Expo (Recommended for React Native development)
 
-```
+# OR for running on a specific platform
+npx react-native run-android  # Run on an Android emulator or device
+npx react-native run-ios  # Run on an iOS simulator or device (Mac only)
+
+# If using a backend server (e.g., Node.js, Firebase functions)
+cd backend
+npm start  # Start the backend server
 
 ## Additional Resources
 
@@ -137,12 +159,12 @@ Additionally, the chatbot, which currently provides dosha-based recommendations,
 Beyond diagnostics, Ayucare will expand its features to include Ayurveda-based lifestyle and diet recommendations, offering personalized meal plans, guided meditation, and daily habit tracking to help users maintain a balanced and holistic lifestyle. With these enhancements, Ayucare will transform into a comprehensive AI-powered Ayurvedic healthcare ecosystem, seamlessly integrating modern technology with traditional wisdom to empower users in managing their health effectively.
 
 ### Submission Checklist
-- [ ] Completed all sections of this README
-- [ ] Added project demo video
-- [ ] Provided live project link
-- [ ] Ensured all team members are listed
-- [ ] Included setup instructions
-- [ ] Submitted final code to repository
+- [YES ] Completed all sections of this README
+- [ YES] Added project demo video
+- [YES ] Provided live project link(locale app)
+- [ YES] Ensured all team members are listed
+- [ YES] Included setup instructions
+- [ YES] Submitted final code to repository
 
 ---
 

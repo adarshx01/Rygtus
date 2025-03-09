@@ -5,7 +5,7 @@ The official template repository for Define 3.0
 ![DefineHack 2025 Logo](https://github.com/user-attachments/assets/8173bc16-418e-4912-b500-c6427e4ba4b6)
 
 
-
+TEAM RYGTUS
 # < AyuCare >
  Cover Image  If applicable
 
